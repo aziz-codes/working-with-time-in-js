@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- <script src="https://smtpjs.com/v3/smtp.js"></script> -->
+	<title>Sending Mails</title>
+</head>
+<style>
+	.container{
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		gap: 10px;
+	}
+	.container .items{
+		display: flex;
+		flex-direction: row;
+		gap: 10px;;
+	}
+</style>
+<body>
+	
+<!-- <a href="count-down.html">Count Down</a> -->
+<div class="container">
+	<dv class="items">
+		<h3 id="hours"></h3>
+	<h3 id="mins">:</h3>
+	<h3 id="seconds">:</h3>
+	</dv>
+	<div class="actions">
+		<button onclick="start_timer()">Start</button>
+		<button onclick="stop()">Stop</button>
+		<button onclick="reset()">Reset</button><br><br>
+		<button onclick="navigate()">Go to CountDown</button>
+	</div>
+</div>
+
+
+
+<script>
+	const hours = document.getElementById('hours');
+	const mins = document.getElementById('mins');
+	const seconds = document.getElementById('seconds');
+	let sec = 0;
+		let min = 0.0;
+		let hour = 0;
+	let intervalID = 0;
+	function start_timer(){
+		
+	 intervalID = setInterval(()=>{
+		sec=sec+1;
+		seconds.textContent=sec;;
+		mins.textContent = min+" : ";
+		hours.textContent = hour+" : ";
+		if(sec===60){
+        min+=1;
+		sec=0;
+		if(min===60){
+			hour+=1;
+			min = 0;
+			hours.textContent = hour+" : ";
+		}
+		}
+		},1000)
+	}
+	function stop(){
+
+		clearInterval(intervalID);
+	}
+	function reset(){
+		clearInterval(intervalID);
+        min = 0;
+		sec = 0;
+		hour = 0;
+		seconds.textContent=sec+" :" ;;
+		mins.textContent = min+" : ";
+		hours.textContent = hour;
+	}
+	function navigate(){
+		window.location.replace('countdown.html')
+	}
+</script>
+</body>
+
+
+</html>
